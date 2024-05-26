@@ -1,9 +1,19 @@
 import React, { memo, useCallback, useMemo } from "react";
 import { Button, useInput } from "@/modules/base";
+import { useAuth } from "../hooks/useAuth";
 
 const Login = () => {
+  const { loading, login } = useAuth();
   const { value: email, handleOnChange: handleSetEmail } = useInput("");
   const { value: password, handleOnChange: handleSetPassword } = useInput("");
+
+  const handleLogin = useCallback(
+    async (event: React.FormEvent<HTMLFormElement>) => {
+      event.preventDefault();
+      login(email || "", password || "");
+    },
+    [email, login, password]
+  );
 
   const isDisabled = useMemo(() => {
     return !email || !password;
@@ -13,6 +23,7 @@ const Login = () => {
     <div className="login-container">
       <form
         className="login-form flex-col flex lg:flex-row"
+        onSubmit={handleLogin}
       >
         <input
           autoFocus
@@ -33,7 +44,7 @@ const Login = () => {
           className="lg:mr-8 h-[40px] px-8 border mt-12 lg:mt-0 rounded-medium border-gray-300"
           onChange={handleSetPassword}
         />
-        <Button type="submit" isDisable={isDisabled} label="Login / Register" className="px-8 lg:mt-0 h-[40px] mt-12 rounded-medium" />
+        <Button isLoading={loading} type="submit" isDisable={isDisabled} label="Login / Register" className="px-8 lg:mt-0 h-[40px] mt-12 rounded-medium" />
       </form>
     </div>
   );

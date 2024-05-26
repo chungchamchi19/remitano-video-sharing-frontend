@@ -1,5 +1,5 @@
 import { render, cleanup, fireEvent, waitFor } from "@testing-library/react";
-import Header from "../components/Header";
+import Header from "../Header";
  //@ts-ignore
  global.setImmediate = jest.useRealTimers;
 

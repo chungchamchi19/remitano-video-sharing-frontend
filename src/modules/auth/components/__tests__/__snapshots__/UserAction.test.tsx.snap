@@ -1,90 +1,56 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`LoginPlaceholder should render correct LoginPlaceholder 1`] = `
+exports[`UserAction should render correct Login 1`] = `
 {
   "asFragment": [Function],
   "baseElement": <body>
     <div>
       <div
-        class="flex login-placeholder"
+        class="user-action-container flex items-center"
       >
         <span
-          aria-busy="true"
-          aria-live="polite"
-          class="mr-12"
+          class="txt-welcome "
         >
+          Welcome 
           <span
-            class="react-loading-skeleton w-[100px] min-w-[100px] lg:w-[200px] lg:min-w-[200px]  h-[40px] flex-shrink-0 overflow-hidden relative"
-          >
-            ‌
-          </span>
-          <br />
+            class="text-primary-250 font-semibold"
+          />
         </span>
-        <span
-          aria-busy="true"
-          aria-live="polite"
-          class="mr-12"
+        <button
+          class="btn-share-movie ml-12 w-[120px] h-[36px] flex items-center rounded-medium justify-center relative before:z-0  text-dark-high hover:before:bg-light-100/20 bg-dark-200 before:h-full before:w-full before:absolute before:top-0 before:left-0 before:rounded-medium "
         >
-          <span
-            class="react-loading-skeleton w-[100px] min-w-[100px] lg:w-[200px] lg:min-w-[200px] mr-12 h-[40px] flex-shrink-0 overflow-hidden relative"
-          >
-            ‌
-          </span>
-          <br />
-        </span>
-        <span
-          aria-busy="true"
-          aria-live="polite"
+          Share a movie
+        </button>
+        <button
+          class="btn-logout ml-12 border border-gray-300 h-[36px] px-[12px] rounded-medium"
         >
-          <span
-            class="react-loading-skeleton w-[80px] min-w-[80px] lg:w-[134px] lg:min-w-[150px] h-[40px] flex-shrink-0 overflow-hidden relative"
-          >
-            ‌
-          </span>
-          <br />
-        </span>
+          Logout
+        </button>
       </div>
     </div>
   </body>,
   "container": <div>
     <div
-      class="flex login-placeholder"
+      class="user-action-container flex items-center"
     >
       <span
-        aria-busy="true"
-        aria-live="polite"
-        class="mr-12"
+        class="txt-welcome "
       >
+        Welcome 
         <span
-          class="react-loading-skeleton w-[100px] min-w-[100px] lg:w-[200px] lg:min-w-[200px]  h-[40px] flex-shrink-0 overflow-hidden relative"
-        >
-          ‌
-        </span>
-        <br />
+          class="text-primary-250 font-semibold"
+        />
       </span>
-      <span
-        aria-busy="true"
-        aria-live="polite"
-        class="mr-12"
+      <button
+        class="btn-share-movie ml-12 w-[120px] h-[36px] flex items-center rounded-medium justify-center relative before:z-0  text-dark-high hover:before:bg-light-100/20 bg-dark-200 before:h-full before:w-full before:absolute before:top-0 before:left-0 before:rounded-medium "
       >
-        <span
-          class="react-loading-skeleton w-[100px] min-w-[100px] lg:w-[200px] lg:min-w-[200px] mr-12 h-[40px] flex-shrink-0 overflow-hidden relative"
-        >
-          ‌
-        </span>
-        <br />
-      </span>
-      <span
-        aria-busy="true"
-        aria-live="polite"
+        Share a movie
+      </button>
+      <button
+        class="btn-logout ml-12 border border-gray-300 h-[36px] px-[12px] rounded-medium"
       >
-        <span
-          class="react-loading-skeleton w-[80px] min-w-[80px] lg:w-[134px] lg:min-w-[150px] h-[40px] flex-shrink-0 overflow-hidden relative"
-        >
-          ‌
-        </span>
-        <br />
-      </span>
+        Logout
+      </button>
     </div>
   </div>,
   "debug": [Function],

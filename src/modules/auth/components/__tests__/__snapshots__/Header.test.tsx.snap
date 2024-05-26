@@ -18,7 +18,14 @@ exports[`Header should render correct Header 1`] = `
             <img
               alt=""
               class="w-[48px] h-[48px] mr-12"
-              src="/funny-movie.png"
+              data-nimg="1"
+              decoding="async"
+              height="48"
+              loading="lazy"
+              src="/_next/image?url=%2Ffunny-movie.png&w=96&q=75"
+              srcset="/_next/image?url=%2Ffunny-movie.png&w=48&q=75 1x, /_next/image?url=%2Ffunny-movie.png&w=96&q=75 2x"
+              style="color: transparent;"
+              width="48"
             />
             Funny Movies
           </a>
@@ -71,7 +78,14 @@ exports[`Header should render correct Header 1`] = `
           <img
             alt=""
             class="w-[48px] h-[48px] mr-12"
-            src="/funny-movie.png"
+            data-nimg="1"
+            decoding="async"
+            height="48"
+            loading="lazy"
+            src="/_next/image?url=%2Ffunny-movie.png&w=96&q=75"
+            srcset="/_next/image?url=%2Ffunny-movie.png&w=48&q=75 1x, /_next/image?url=%2Ffunny-movie.png&w=96&q=75 2x"
+            style="color: transparent;"
+            width="48"
           />
           Funny Movies
         </a>

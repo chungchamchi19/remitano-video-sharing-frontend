@@ -1,5 +1,5 @@
 import { render, cleanup } from "@testing-library/react";
-import LoginPlaceholder from "../components/LoginPlaceholder";
+import LoginPlaceholder from "../LoginPlaceholder";
 
 describe("LoginPlaceholder", () => {
   afterEach(cleanup);

@@ -1,4 +1,3 @@
-/* istanbul ignore file */
 import qs from 'querystringify';
 
 type RequestHeader = {
@@ -28,14 +27,15 @@ export const setToken = (token: string) => {
 };
 
 const handleResponse = async (
-  result: any,
+  result: Response,
   resolve: (params?: any) => void,
   reject: (params?: any) => void,
 ) => {
-  if (result && result.status === STATUS_CODE.unauthorized) {
-    return reject();
-  }
   const resultJson = await result.json();
+
+  if (result && result.status === STATUS_CODE.unauthorized) {
+    return reject(resultJson);
+  }
 
   if (result.status > 300) {
     return reject(resultJson);
