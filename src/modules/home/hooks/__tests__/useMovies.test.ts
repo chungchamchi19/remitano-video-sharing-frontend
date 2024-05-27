@@ -5,140 +5,172 @@ import { movieApi } from "../../api";
 import { getYoutubeVideoId } from "../../utils";
 
 describe("useMovies", () => {
-  it("useMovies should work", () => {
-    const { result } = renderHook(() => useMovies());
-    expect(result.current).toBeTruthy();
-    expect(result.current.movies).not.toBeUndefined();
-    expect(result.current.shareMovie).toBeInstanceOf(Function);
-  });
-
-  it("shareMovie should work when getYoutubeVideoInfo and shareMovie apis success", async () => {
-    jest.mocked(getYoutubeVideoId).mockImplementation(() => "1");
-    jest.mocked(movieApi.getYoutubeVideoInfo).mockResolvedValue({
-      items: [
-        {
-          snippet: {
-            title: "string",
-            description: "string",
-            thumbnails: {
-              standard: {
-                url: "string",
+  describe("shareMovie", () => {
+    it("should add shared movie to current list movies when getYoutubeVideoInfo and shareMovie call successfully", async () => {
+      jest.mocked(getYoutubeVideoId).mockImplementation(() => "1");
+      jest.mocked(movieApi.getYoutubeVideoInfo).mockResolvedValue({
+        items: [
+          {
+            snippet: {
+              title: "string",
+              description: "string",
+              thumbnails: {
+                standard: {
+                  url: "string",
+                },
               },
             },
           },
-        },
-      ],
-    } as any);
-    jest.mocked(movieApi.shareMovie).mockResolvedValue({
-      status: "success",
-      result: { id: 1 },
-    } as any);
-    const { result } = renderHook(() => useMovies());
-    await act(async () => {
-      await result.current.shareMovie("https://www.youtube.com/watch?v=mnlo3ntJG98");
+        ],
+      } as any);
+      jest.mocked(movieApi.shareMovie).mockResolvedValue({
+        status: "success",
+        result: { id: 1 },
+      } as any);
+      const { result } = renderHook(() => useMovies());
+      await act(async () => {
+        await result.current.shareMovie("https://www.youtube.com/watch?v=mnlo3ntJG98");
+      });
+      expect(result.current.movies).toEqual([{ id: 1 }]);
+      expect(toast).toBeCalledWith("Share successfully", {
+        type: "success",
+      });
     });
-    expect(result.current.movies).toEqual([{ id: 1 }]);
-    expect(toast).toBeCalledWith("Share successfully", {
-      type: "success",
-    });
-  });
 
-  it("shareMovie should work when getYoutubeVideoInfo api success and shareMovie api fail", async () => {
-    jest.mocked(movieApi.getYoutubeVideoInfo).mockResolvedValue({
-      items: [
-        {
-          snippet: {
-            title: "string",
-            description: "string",
-            thumbnails: {
-              standard: {
-                url: "string",
+    it("should not share movie when shareMovie api returns failure", async () => {
+      jest.mocked(movieApi.getYoutubeVideoInfo).mockResolvedValue({
+        items: [
+          {
+            snippet: {
+              title: "string",
+              description: "string",
+              thumbnails: {
+                standard: {
+                  url: "string",
+                },
               },
             },
           },
-        },
-      ],
-    } as any);
-    movieApi.shareMovie = jest.fn().mockResolvedValue({
-      success: false,
+        ],
+      } as any);
+      movieApi.shareMovie = jest.fn().mockResolvedValue({
+        success: false,
+      });
+      const { result } = renderHook(() => useMovies());
+      await act(async () => {
+        await result.current.shareMovie("https://www.youtube.com/watch?v=mnlo3ntJG98");
+      });
+      expect(result.current.movies).toEqual([]);
     });
-    const { result } = renderHook(() => useMovies());
-    await act(async () => {
-      await result.current.shareMovie("https://www.youtube.com/watch?v=mnlo3ntJG98");
-    });
-    expect(result.current.movies).toEqual([]);
-  });
 
-  it("shareMovie should work when getYoutubeVideoInfo api fail", async () => {
-    jest.mocked(movieApi.getYoutubeVideoInfo).mockResolvedValue({
-      item: null,
-    } as any);
-    const { result } = renderHook(() =>  useMovies());
-    await act(async () => {
-      await result.current.shareMovie("https://www.youtube.com/watch?v=mnlo3ntJG98");
+    it("should not share movie when getYoutubeVideoInfo return failure", async () => {
+      jest.mocked(movieApi.getYoutubeVideoInfo).mockResolvedValue({
+        item: null,
+      } as any);
+      const { result } = renderHook(() => useMovies());
+      await act(async () => {
+        await result.current.shareMovie("https://www.youtube.com/watch?v=mnlo3ntJG98");
+      });
+      expect(result.current.movies).toEqual([]);
+      expect(toast).toBeCalledWith("Invalid Youtube link", {
+        type: "error",
+      });
     });
-    expect(result.current.movies).toEqual([]);
-    expect(toast).toBeCalledWith("Invalid Youtube link", {
-      type: "error",
-    });
-  });
 
-  it("shareMovie should work when getYoutubeVideoId fail", async () => {
-    jest.mocked(getYoutubeVideoId).mockImplementation(() => "");
-    jest.mocked(movieApi.getYoutubeVideoInfo).mockResolvedValue({
-      items: [
-        {
-          snippet: {
-            title: "string",
-            description: "string",
-            thumbnails: {
-              standard: {
-                url: "string",
+    it("should not share movie when getYoutubeVideoId return failure", async () => {
+      jest.mocked(getYoutubeVideoId).mockImplementation(() => "");
+      jest.mocked(movieApi.getYoutubeVideoInfo).mockResolvedValue({
+        items: [
+          {
+            snippet: {
+              title: "string",
+              description: "string",
+              thumbnails: {
+                standard: {
+                  url: "string",
+                },
               },
             },
           },
-        },
-      ],
-    } as any);
-    movieApi.shareMovie = jest.fn().mockResolvedValue({
-      success: false,
+        ],
+      } as any);
+      movieApi.shareMovie = jest.fn().mockResolvedValue({
+        success: false,
+      });
+      const { result } = renderHook(() => useMovies());
+      await act(async () => {
+        await result.current.shareMovie("https://www.youtube.com/watch?v=");
+      });
+      expect(result.current.movies).toEqual([]);
+      expect(toast).toBeCalledWith("Invalid Youtube link", {
+        type: "error",
+      });
     });
-    const { result } = renderHook(() => useMovies());
-    await act(async () => {
-      await result.current.shareMovie("https://www.youtube.com/watch?v=");
-    });
-    expect(result.current.movies).toEqual([]);
-    expect(toast).toBeCalledWith("Invalid Youtube link", {
-      type: "error",
-    });
-  });
 
-  it("should show toast and setLoading is false when shareMovie fail", async () => {
-    jest.mocked(getYoutubeVideoId).mockImplementation(() => "1");
-    jest.mocked(movieApi.getYoutubeVideoInfo).mockRejectedValue({
-      items: [
-        {
-          snippet: {
-            title: "string",
-            description: "string",
-            thumbnails: {
-              standard: {
-                url: "string",
+    it("should show toast when shareMovie return status fail", async () => {
+      jest.mocked(getYoutubeVideoId).mockImplementation(() => "1");
+      jest.mocked(movieApi.getYoutubeVideoInfo).mockRejectedValue({
+        items: [
+          {
+            snippet: {
+              title: "string",
+              description: "string",
+              thumbnails: {
+                standard: {
+                  url: "string",
+                },
               },
             },
           },
-        },
-      ],
+        ],
+      });
+      movieApi.shareMovie = jest.fn().mockRejectedValue({
+        success: false,
+      });
+      const { result } = renderHook(() => useMovies());
+      await act(async () => {
+        await result.current.shareMovie("https://www.youtube.com/watch?v=mnlo3ntJG98");
+      });
+      expect(result.current.movies).toEqual([]);
+      expect(toast).toBeCalled();
     });
-    movieApi.shareMovie = jest.fn().mockRejectedValue({
-      success: false,
+  });
+
+  describe("getMovies", () => {
+    it("should return movies when getMovies api calls successfully", async () => {
+      jest.mocked(movieApi.getMovies).mockResolvedValue({
+        status: "success",
+        result: Array(10).fill({}),
+      } as any);
+      const { result } = renderHook(() => useMovies());
+      await act(async () => {
+        await result.current.getMovies({ page: 10 });
+      });
+      expect(result.current.movies).toEqual(Array(10).fill({}));
     });
-    const { result } = renderHook(() => useMovies());
-    await act(async () => {
-      await result.current.shareMovie("https://www.youtube.com/watch?v=mnlo3ntJG98");
+
+    it("should show toast when getMovies api return status fail", async () => {
+      jest.mocked(movieApi.getMovies).mockRejectedValue({
+        success: false,
+      });
+      const { result } = renderHook(() => useMovies());
+      await act(async () => {
+        await result.current.getMovies({ page: 10 });
+      });
+      expect(toast).toBeCalled();
     });
-    expect(result.current.movies).toEqual([]);
-    expect(toast).toBeCalled();
+
+    it("should has not lastMovieIdParam when getMovies", async () => {
+      jest.mocked(movieApi.getMovies).mockRejectedValue({
+        status: "success",
+        result: [{ id: 1 }],
+      });
+      const { result } = renderHook(() => useMovies());
+      await act(async () => {
+        await result.current.getMovies({ refresh: true });
+      });
+      expect(movieApi.getMovies).toBeCalledWith(20, undefined);
+    });
   });
 });
 
@@ -155,6 +187,7 @@ jest.mock("../../utils/helpers", () => ({
 jest.mock("../../api", () => ({
   movieApi: {
     shareMovie: jest.fn(),
+    getMovies: jest.fn(),
     getYoutubeVideoInfo: jest.fn(),
   },
 }));

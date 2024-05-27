@@ -14,12 +14,20 @@ describe("movieApi", () => {
       expect(response).toEqual({ status: "success", result: {} });
     });
   });
+
+  describe("getMovies", () => {
+    it("should return movies", async () => {
+      const response = await movieApi.getMovies(10);
+      expect(response).toEqual({ status: "success", result: Array(10).fill({}) });
+    });
+  });
 });
 
 jest.mock("@/modules/base", () => {
   return {
     api: {
       post: jest.fn().mockResolvedValue({ status: "success", result: {} }),
+      get: jest.fn().mockResolvedValue({ status: "success", result: Array(10).fill({}) }),
     },
     ApiResponse: jest.fn(),
   };

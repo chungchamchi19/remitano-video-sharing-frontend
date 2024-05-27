@@ -4,6 +4,9 @@ export type Movie = {
   thumbnail: string;
   description: string;
   youtube_id: string;
+  user?: {
+    email: string;
+  }
 };
 
 export type MovieSession = Omit<Movie, "id">

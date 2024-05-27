@@ -8,6 +8,13 @@ export const movieApi = {
     return await api.post("/api/movies", movie);
   },
 
+  getMovies: async (
+    pageSize: number,
+    lastMovieId?: string,
+  ): Promise<ApiResponse<Movie[]>> => {
+    return await api.get("/api/public/movies", { lastMovieId, pageSize: pageSize, orderBy: "DESC" });
+  },
+
   getYoutubeVideoInfo: async (
     video_id?: string
   ): Promise<{
