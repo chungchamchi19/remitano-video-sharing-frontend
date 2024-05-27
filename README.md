@@ -1,3 +1,28 @@
+# Overview
+
+[1. Introduction](https://github.com/chungchamchi19/remitano-video-sharing-frontend?tab=readme-ov-file#1-introduction)
+- [Features](https://github.com/chungchamchi19/remitano-video-sharing-frontend?tab=readme-ov-file#features)
+- [Demo](https://github.com/chungchamchi19/remitano-video-sharing-frontend?tab=readme-ov-file#demo)
+- [Source code](https://github.com/chungchamchi19/remitano-video-sharing-frontend?tab=readme-ov-file#source-code)
+
+[2. Prerequisites](https://github.com/chungchamchi19/remitano-video-sharing-frontend?tab=readme-ov-file#2-prerequisites)
+- [Backend](https://github.com/chungchamchi19/remitano-video-sharing-frontend?tab=readme-ov-file#backend)
+- [Frontend](https://github.com/chungchamchi19/remitano-video-sharing-frontend?tab=readme-ov-file#frontend)
+
+[3. Installation & Configuration](https://github.com/chungchamchi19/remitano-video-sharing-frontend?tab=readme-ov-file#3-installation--configuration)
+- [Backend Setup](https://github.com/chungchamchi19/remitano-video-sharing-frontend?tab=readme-ov-file#backend-setup)
+- [Frontend Setup](https://github.com/chungchamchi19/remitano-video-sharing-frontend?tab=readme-ov-file#frontend-setup)
+
+[4. Usage](https://github.com/chungchamchi19/remitano-video-sharing-frontend?tab=readme-ov-file#4-usage)
+- [1. User Login or registration](https://github.com/chungchamchi19/remitano-video-sharing-frontend?tab=readme-ov-file#1-user-login-or-registration)
+- [2. Share Youtube videos](https://github.com/chungchamchi19/remitano-video-sharing-frontend?tab=readme-ov-file#2-share-youtube-videos)
+- [3. Viewing a list of shared videos](https://github.com/chungchamchi19/remitano-video-sharing-frontend?tab=readme-ov-file#3-viewing-a-list-of-shared-videos)
+- [4. Real-time Notification for new video shared](https://github.com/chungchamchi19/remitano-video-sharing-frontend?tab=readme-ov-file#real-time-notification-for-new-video-shared)
+
+[5. Troubleshooting](https://github.com/chungchamchi19/remitano-video-sharing-frontend?tab=readme-ov-file#5-troubleshooting)
+- [1. Database Connection issue](https://github.com/chungchamchi19/remitano-video-sharing-frontend?tab=readme-ov-file#1-database-connection-issue)
+- [2. Check & sets the required environments, variables](https://github.com/chungchamchi19/remitano-video-sharing-frontend?tab=readme-ov-file#2-check--sets-the-required-environments-variables)
+
 # 1. Introduction
 
 ## Features
@@ -34,31 +59,6 @@ master  | v4.17.1 | v0.3.16 | v16.3
 Branch  | NextJS |ReactJS| TailwindCss 
 -------|------ | -------|------
 master  | v13.4.10 | v18.2.0 | v3.3.3
-
-### Overview
-
-[1. Introduction](https://github.com/chungchamchi19/remitano-video-sharing-frontend#1-introduction)
-- [Features](https://github.com/chungchamchi19/remitano-video-sharing-frontend#features)
-- [Demo](https://github.com/chungchamchi19/remitano-video-sharing-frontend#demo)
-- [Source code](https://github.com/chungchamchi19/remitano-video-sharing-frontend#source-code)
-
-[2. Prerequisites](https://github.com/chungchamchi19/remitano-video-sharing-frontend#2-prerequisites)
-- [Backend](https://github.com/chungchamchi19/remitano-video-sharing-frontend#backend)
-- [Frontend](https://github.com/chungchamchi19/remitano-video-sharing-frontend#frontend)
-
-[3. Installation & Configuration](https://github.com/chungchamchi19/remitano-video-sharing-frontend#3-installation--configuration)
-- [Backend Setup](https://github.com/chungchamchi19/remitano-video-sharing-frontend#backend-setup)
-- [Frontend Setup](https://github.com/chungchamchi19/remitano-video-sharing-frontend#frontend-setup)
-
-[4. Usage](https://github.com/chungchamchi19/remitano-video-sharing-frontend#4-usage)
-- [1. User Login or registration](https://github.com/chungchamchi19/remitano-video-sharing-frontend#1-user-login-or-registration)
-- [2. Share Youtube videos](https://github.com/chungchamchi19/remitano-video-sharing-frontend#2-share-youtube-videos)
-- [3. Viewing a list of shared videos](https://github.com/chungchamchi19/remitano-video-sharing-frontend#3-viewing-a-list-of-shared-videos)
-- [4. Real-time Notification for new video shared](https://github.com/chungchamchi19/remitano-video-sharing-frontend#real-time-notification-for-new-video-shared)
-
-[5. Troubleshooting](https://github.com/chungchamchi19/remitano-video-sharing-frontend#5-troubleshooting)
-- [1. Database Connection issue](https://github.com/chungchamchi19/remitano-video-sharing-frontend#1-database-connection-issue)
-- [2. Check & sets the required environments, variables](https://github.com/chungchamchi19/remitano-video-sharing-frontend#2-check--sets-the-required-environments-variables)
 
 # 3. Installation & Configuration
 
