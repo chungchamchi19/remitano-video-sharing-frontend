@@ -40,6 +40,36 @@ describe("useShareMovie", () => {
     });
   });
 
+  it("should add shared movie to current list movies when getYoutubeVideoInfo and shareMovie call successfully but status error", async () => {
+    jest.mocked(getYoutubeVideoId).mockImplementation(() => "1");
+    jest.mocked(movieApi.getYoutubeVideoInfo).mockResolvedValue({
+      items: [
+        {
+          snippet: {
+            title: "string",
+            description: "string",
+            thumbnails: {
+              standard: {
+                url: "string",
+              },
+            },
+          },
+        },
+      ],
+    } as any);
+    jest.mocked(movieApi.shareMovie).mockResolvedValue({
+      status: "fail",
+      message: "server error",
+    } as any);
+    const { result } = renderHook(() => useShareMovie());
+    await act(async () => {
+      await result.current.shareMovie("https://www.youtube.com/watch?v=mnlo3ntJG98");
+    });
+    expect(toast).toBeCalledWith("server error", {
+      type: "error",
+    });
+  });
+
   it("should not share movie when shareMovie api returns failure", async () => {
     jest.mocked(getYoutubeVideoId).mockImplementation(() => "1");
     jest.mocked(movieApi.getYoutubeVideoInfo).mockResolvedValue({

@@ -29,6 +29,18 @@ describe("useMovies", () => {
       expect(toast).toBeCalled();
     });
 
+    it("should show toast when getMovies api return success but status fail", async () => {
+      jest.mocked(movieApi.getMovies).mockResolvedValue({
+        status: "fail",
+        message: "server error",
+      });
+      const { result } = renderHook(() => useMovies());
+      await act(async () => {
+        await result.current.getMovies({ page: 10 });
+      });
+      expect(toast).toBeCalledWith("Get movies failed", { type: "error" });
+    });
+
     it("should has not lastMovieIdParam when getMovies", async () => {
       jest.mocked(movieApi.getMovies).mockRejectedValue({
         status: "success",
