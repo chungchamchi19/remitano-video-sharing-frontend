@@ -131,6 +131,10 @@ docker-compose build
 docker-compose up
 ```
 
+## 6. Deploy Backend to Render
+
+Check out our [Deploy a Node Express App on Render](https://docs.render.com/deploy-node-express-app) for more details.
+
 ## Frontend Setup
 
 ### 1. Clone repository and install dependencies
