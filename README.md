@@ -34,11 +34,15 @@ Sharing Video Features:
 - Real-time notifications for new video shares: When a user shares a new video, other logged-in users should receive a real-time notification about the newly shared video. This notification can be displayed as a pop-up or a banner in the application, and it should contain the video title and the name of the user who shared it.
 
 ## Demo
+
 > [Front-end](https://remitano-video-sharing-frontend.vercel.app/)
+
 > [Back-end](https://remitano-video-sharing-backend.onrender.com)
 
 ## Source code
+
 > [Front-end](https://github.com/chungchamchi19/remitano-video-sharing-frontend)
+
 > [Back-end](https://github.com/chungchamchi19/remitano-video-sharing-backend)
 
 # 2. Prerequisites
