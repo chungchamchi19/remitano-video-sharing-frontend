@@ -2,7 +2,7 @@ import { render, cleanup } from "@testing-library/react";
 import ShareBox from "../../components/ShareBox";
 import {flushPromises} from '@/modules/base';
 import { AuthContext } from "@/modules/auth";
-import { useMovies } from "../../hooks/useMovies";
+import { useShareMovie } from "../../hooks/useShareMovie";
 //@ts-ignore
 global.setImmediate = jest.useRealTimers;
 
@@ -48,9 +48,9 @@ const setUpLoginLoading = () => {
   );
 };
 
-jest.mock("../../hooks/useMovies", () => {
+jest.mock("../../hooks/useShareMovie", () => {
   let cache: any;
-  const useMovies = () => {
+  const useShareMovie = () => {
     if (!cache) {
       cache = {
         shareMovie: jest.fn(),
@@ -59,7 +59,7 @@ jest.mock("../../hooks/useMovies", () => {
     return cache;
   };
   return {
-    useMovies,
+    useShareMovie,
   };
 });
 
@@ -123,7 +123,7 @@ describe("ShareBox", () => {
     input?.setAttribute("value", "https://www.youtube.com/watch?v=123");
     form?.dispatchEvent(new Event("submit", { bubbles: true }));
     await flushPromises();
-   expect(useMovies().shareMovie).toBeCalledTimes(1);
+   expect(useShareMovie().shareMovie).toBeCalledTimes(1);
    
   });
 

@@ -14,13 +14,7 @@ const fakeMovies = [1, 2, 3, 4, 5];
 const VideoNotification = ({ movie }: { movie: Movie }) => {
   return (
     <div className="flex">
-      <Image
-        src={movie?.thumbnail}
-        className="w-[80px] h-[80px] mr-12 rounded-medium"
-        alt=""
-        width={80}
-        height={80}
-      />
+      <Image src={movie?.thumbnail} className="w-[80px] h-[80px] mr-12 rounded-medium" alt="" width={80} height={80} />
       <div className="flex flex-col">
         <span className="font-medium text-12">{movie?.title}</span>
         <span className="font-regular text-12">
@@ -31,7 +25,6 @@ const VideoNotification = ({ movie }: { movie: Movie }) => {
   );
 };
 
-let isSubscribed = false;
 const MovieList = () => {
   const { movies, getMovies, period, setMovies } = useMovies();
   const { loading } = useAuthContext();
@@ -42,31 +35,27 @@ const MovieList = () => {
   }, []);
 
   useEffect(() => {
-    if (isConnected) {
-      if (isSubscribed) {
-        return;
-      }
-      isSubscribed = true;
-      subscribe("share-movie", (data: any) => {
-        setMovies((prev) => [data, ...prev]);
-        toast(<VideoNotification movie={data} />, {
-          type: "info",
-          icon: false,
-        });
-      });
+    if (!isConnected) {
+      return;
     }
+    subscribe("share-movie", listenShareMovieWS);
     return () => {
-      unsubscribe("share-movie", () => {});
+      unsubscribe("share-movie", listenShareMovieWS);
     };
-  }, [isConnected, setMovies, subscribe, unsubscribe]);
+  }, [isConnected]);
+
+  const listenShareMovieWS = (data: any) => {
+    setMovies((prev) => {
+      return [data, ...prev];
+    });
+    toast(<VideoNotification movie={data} />, {
+      type: "info",
+      icon: false,
+    });
+  };
 
   const isShowLoadMore = useMemo(() => {
-    return (
-      !period.refresh &&
-      !period.loadMore &&
-      !period.limited &&
-      movies.length > 0
-    );
+    return !period.refresh && !period.loadMore && !period.limited && movies.length > 0;
   }, [movies.length, period.limited, period.loadMore, period.refresh]);
 
   const isShowPlaceholder = useMemo(() => {
@@ -75,9 +64,7 @@ const MovieList = () => {
 
   return (
     <div className="movie-list-container pt-[32px]">
-      {isShowPlaceholder
-        ? fakeMovies.map((item) => <SkeletonMovie key={item} />)
-        : movies.map((movie) => <MovieItem movie={movie} key={movie.id} />)}
+      {isShowPlaceholder ? fakeMovies.map((item) => <SkeletonMovie key={item} />) : movies.map((movie) => <MovieItem movie={movie} key={movie.id} />)}
       {isShowLoadMore && (
         <div className="btn-loadmore-wrapper flex items-center justify-center mt-24">
           <Button
@@ -90,11 +77,7 @@ const MovieList = () => {
           />
         </div>
       )}
-      {period.limited && movies.length === 0 && (
-        <div className="w-full flex justify-center items-center">
-          No videos have been shared yet
-        </div>
-      )}
+      {period.limited && movies.length === 0 && <div className="w-full flex justify-center items-center">No videos have been shared yet</div>}
     </div>
   );
 };

@@ -65,6 +65,9 @@ exports[`HomePage should render correct HomePage 1`] = `
             </form>
           </div>
         </header>
+        <div
+          class="movie-list-container pt-[32px]"
+        />
       </div>
     </div>
   </body>,
@@ -129,6 +132,9 @@ exports[`HomePage should render correct HomePage 1`] = `
           </form>
         </div>
       </header>
+      <div
+        class="movie-list-container pt-[32px]"
+      />
     </div>
   </div>,
   "debug": [Function],

@@ -3,10 +3,11 @@ import { useInput, Button } from "@/modules/base";
 import { useMovies } from "../hooks/useMovies";
 import { useAuthContext } from "@/modules/auth";
 import SkeletonShareBox from "./SkeletonShareBox";
+import { useShareMovie } from "../hooks/useShareMovie";
 
 const ShareBox = () => {
   const { value: url, handleOnChange: handleChangeUrl } = useInput("");
-  const { shareMovie, isSharing } = useMovies();
+  const { shareMovie, isSharing } = useShareMovie();
   const { loading } = useAuthContext();
 
   if (loading) {

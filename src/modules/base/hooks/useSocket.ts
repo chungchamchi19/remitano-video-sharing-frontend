@@ -6,6 +6,9 @@ export const useSocket = () => {
 
   useEffect(() => {
     socket.connect();
+    if (socket.connected) {
+      setIsConnected(true);
+    }
     socket.on("connect", onConnect);
     socket.on("disconnect", onDisconnect);
     return () => {
